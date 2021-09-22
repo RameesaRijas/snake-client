@@ -9,7 +9,11 @@ const setupInput = (conn) => {
   return stdin;
 };
 //to close on clt+c
-const handleUserInput = function (key) { 
+const handleUserInput = function (key) {
+
+  if (key === 'm') {
+    connection.write("Say: mym");
+  }
   // your code here
   if (key === 'w') {
     connection.write("Move: up")
@@ -25,6 +29,7 @@ const handleUserInput = function (key) {
     connection.write("Move: right");
   }
   if (key === '\u0003') {
+    console.log("Thank you for playing")
     process.exit();
   }
 };
