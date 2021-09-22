@@ -1,5 +1,7 @@
-const setupInput = function () {
+let connection;
+const setupInput = (conn) => { 
   const stdin = process.stdin;
+  connection = conn;
   stdin.setRawMode(true);
   stdin.setEncoding("utf8");
   stdin.resume();
@@ -7,9 +9,22 @@ const setupInput = function () {
   return stdin;
 };
 //to close on clt+c
-const handleUserInput = function (data) {
+const handleUserInput = function (key) { 
   // your code here
-  if (data === '\u0003') {
+  if (key === 'w') {
+    connection.write("Move: up")
+  }
+  if(key === 'a') {
+    connection.write("Move: left");
+  }
+  if(key === 's') {
+    connection.write("Move: down")
+  }
+
+  if(key === 'd') {
+    connection.write("Move: right");
+  }
+  if (key === '\u0003') {
     process.exit();
   }
 };
